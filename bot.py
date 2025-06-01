@@ -62,18 +62,30 @@ async def download_music(message: Message):
         await message.answer(f"🔍 Ищу: {query}...")
 
         ydl_opts = {
-            'format': 'bestaudio/best',
-            'postprocessors': [{
-                'key': 'FFmpegExtractAudio',
-                'preferredcodec': 'mp3',
-                'preferredquality': '192',
-            }],
-            'outtmpl': f'{DOWNLOAD_FOLDER}/%(title)s.%(ext)s',
-            'quiet': True,
-            'cookies': COOKIES_FILE if os.path.exists(COOKIES_FILE) else None,
-            'socket_timeout': 30,
-            'retries': 10,
-            'max_filesize': 50 * 1024 * 1024,
+            # 'format': 'bestaudio/best',
+            # 'postprocessors': [{
+            #     'key': 'FFmpegExtractAudio',
+            #     'preferredcodec': 'mp3',
+            #     'preferredquality': '192',
+            # }],
+            # 'outtmpl': f'{DOWNLOAD_FOLDER}/%(title)s.%(ext)s',
+            # 'quiet': True,
+            # 'cookies': COOKIES_FILE if os.path.exists(COOKIES_FILE) else None,
+            # 'socket_timeout': 30,
+            # 'retries': 10,
+            # 'max_filesize': 50 * 1024 * 1024,
+
+    'format': 'bestaudio/best',
+    'postprocessors': [{
+        'key': 'FFmpegExtractAudio',
+        'preferredcodec': 'mp3',
+    }],
+    'cookies': 'cookies.txt',
+    'geo_bypass': True,
+    'extractor_args': {'youtube': {'player_client': ['android']}},
+    'quiet': True,
+    'no_warnings': True,
+
         }
 
         try:
