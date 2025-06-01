@@ -80,11 +80,17 @@ async def download_music(message: Message):
         'key': 'FFmpegExtractAudio',
         'preferredcodec': 'mp3',
     }],
-    'cookies': 'cookies.txt',
+    'cookies': 'cookies.txt',  # Если нужно
     'geo_bypass': True,
-    'extractor_args': {'youtube': {'player_client': ['android']}},
+    'extractor_args': {
+        'youtube': {
+            'player_client': ['android'],  # Обход ограничений
+            'skip': ['dash', 'hls']
+        }
+    },
     'quiet': True,
     'no_warnings': True,
+    'force_ipv4': True,  # Решает некоторые проблемы с подключением
 
         }
 
